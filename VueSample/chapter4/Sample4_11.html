@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            html, body{margin: 0;padding: 0;}
+            #example{
+                height: 98vh; min-height: 100%; padding:100px
+            }
+        </style>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id ="example" v-on:contextmenu.prevent="ctxStop"
+            @mouseup.left="leftMouse" @mouseup.right="rightMouse">
+            <div>
+                Left Click : Move Left<br/>
+                Right Click: Move Right
+            </div>
+
+            <img src="images/foot.jpg" v-bind:style="{position: 'absolute', left:pos.left + 'px', top:pos.top+'px'}"/>
+        </div>
+
+        <script type="text/javascript">
+        var vm = new Vue({
+            el:"#example",
+            data:{
+                pos:{ left: 100, top:100}
+            },
+            methods:{
+                ctxStop: function(e){},
+                leftMouse:function(e){
+                    if(this.pos.left > 30)
+                    {
+                        this.pos.left -= 30,
+                        console.log("Move Left!!");
+                    }
+                },
+                rightMouse : function(e){
+                    this.pos.left += 30;
+                    console.log("Move Right");
+                }
+            }
+        })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>hello vue.js</title>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="simple">
+            <input type="text" v-model="name" placeholder="set name"/>
+            <br />
+            입력된 이름:<h2 v-html="name"/>
+        </div>
+
+        <script type="text/javascript">
+            var twoWay = new Vue({
+                el:'#simple',
+                data:{
+                    name:''
+                }
+            })
+            
+        </script>
+    </body>
+</html>

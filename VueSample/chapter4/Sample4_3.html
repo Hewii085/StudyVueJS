@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <style>
+        html, body{margin: 0; padding: 0;}
+        #example {
+            height:98 vh; min-height: 100%; padding:5px;
+        }
+        </style>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="example" v-on:contextmenu="ctxStop">
+            <a href="https://facebook.com" @click="confirmFB">Facebook</a>
+        </div>
+        <script type="text/javascript">
+        var vm = new Vue({
+            el:"#example",
+            methods:{
+                ctxStop:function(e){
+                    e.preventDefault();
+                },
+                confirmFB: function(e){
+                    if(!confirm("Do you wanna open facebook page?")){
+                        e.preventDefault();
+                    }
+                }
+            }
+        })
+        
+        </script>
+    </body>
+</html>

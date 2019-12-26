@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>02-08</title>
+        <style>
+            #list {width: 400px; border:1px solid black; border-collapse:collapse;}
+            #list td, #list th{border:1px solid black; text-align: center;}
+            #list > thead > tr {color:yellow; background-color:purple;}
+        </style>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="example">
+            <table id="list">
+                <thead>
+                    <tr>
+                        <th>번호</th><th>이름</th><th>전화번호</th><th>주소</th>
+                    </tr>
+                </thead>
+                <tbody id="contacts">
+                    <tr v-for="contact in contacts">
+                        <td>{{contact.no}}</td>
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.tel}}</td>
+                        <td>{{contact.address}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript">
+            var model={
+                "pageno":1,
+                "pagesize":10,
+                "totalcount":100,
+                "contacts":[
+                    {"no":100, "name":"a","tel":"010-1132-4432","address":"seoul"},
+                    {"no":99, "name":"b","tel":"010-3232-4432","address":"seoul"},
+                    {"no":98, "name":"c","tel":"010-1192-0032","address":"seoul"},
+                    {"no":97, "name":"d","tel":"010-7932-4232","address":"seoul"},
+                    {"no":96, "name":"e","tel":"010-4332-1532","address":"seoul"},
+                    {"no":96, "name":"f","tel":"010-1132-4432","address":"seoul"},
+                    {"no":95, "name":"g","tel":"010-1322-3332","address":"seoul"},
+                    {"no":94, "name":"h","tel":"010-9092-9932","address":"seoul"},
+                    {"no":93, "name":"i","tel":"010-1002-8732","address":"seoul"},
+                    {"no":92, "name":"j","tel":"010-4002-1902","address":"seoul"},
+                    {"no":91, "name":"k","tel":"010-9132-1113","address":"seoul"},
+                ]
+            }
+
+            var list=new Vue({
+                el: "#example",
+                data:model
+            })
+        </script>
+    </body>
+</html>
