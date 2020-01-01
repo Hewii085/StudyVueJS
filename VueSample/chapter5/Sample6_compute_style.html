@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+        .score{border:solid 1px black;}
+        .warning{background-color:orange; color:purple;}
+        .warnimage{width:18px; height:18px; top:5px; position:relative;}
+        </style>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    </head>
+
+    <div id="example">
+        <p> input 1 ~ 100</p>
+        <div>
+            Score : <input type="text" class="score" v-model.number="score" v-bind:class="info"/>
+            <img src="../chapter4/images/foot.jpg" class="warnimage" v-show="info.warning"/>
+        </div>
+        <script type="text/javascript">
+        var vm = new Vue({
+            el:"#example",
+            data:{
+                score:0
+            },
+            computed:{
+                info:function(){
+                    if(this.score>=1 && this.score <= 100)
+                        return{warning:false};
+                    else
+                        return {warning:true}
+                }
+            }
+        })
+        
+        </script>
+    </div>
+</html>
