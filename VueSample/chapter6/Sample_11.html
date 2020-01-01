@@ -2,8 +2,8 @@
     <head>
         <meta charset="utf-8">
         <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/loadash@4.17.0/loadash.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.hs"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
         <style>
         #list {width: 600px; border:1px solid black; border-collapse: collapse;}
@@ -35,7 +35,7 @@
         })
         </script>
 
-        <template id="searchTempate">
+        <template id="searchTemplate">
             <p>
                 이름 : <input type="text" v-model.trim="name" :placeholder="placeholder"
                              @keyup.enter="keyupEvent"/>
@@ -89,12 +89,17 @@
                 fetchContacts : _.debounce(function(name){
                     this.contactlist = [];
                     this.isProcessing = true;
-                    var url = "http://sample.bmaster.kro.kr/contacts-long/search/" + name;
+                    var url = "http://sample.bmaster.kro.kr/contacts_long/search/" + name;
                     var vm = this;
 
                     fetch(url)
-                        .then(function(response){ return response.json()})
-                        .then(function(json){ vm.contactlist = json; vm.isProcessing = false;})
+                        .then(function(response){ 
+                            return response.json()
+                        })
+                        .then(function(json){ 
+                            vm.contactlist = json;
+                             vm.isProcessing = false;
+                        })
                         .catch(function(ex){
                             console.log("parsing failed", ex);
                             vm.contactlist = [];
