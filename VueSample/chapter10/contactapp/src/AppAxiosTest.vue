@@ -39,46 +39,90 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
-    name:"app",
-    data(){
-        return{
-            no:0, name:'', tel:'',address:'',
-            result:null
-        }
-    },
-    methods:{
-        fetchContacts:function(){
-            axios({
-                method:'GET',
-                url: '/api/contacts',
-                params:{pageno: 1, pagesize:5}
-            }).then((response)=>{
-                window.console.log(response);
-                this.result=response.data;
-            }).catch((ex)=>{
-                window.console.log("Error : " ,ex);
-            })
-
-        },
-        addContact: function(){
-
-        },
-        fetchContactOne:function(){
-
-        },
-        updateContact: function(){
-
-        },
-        deleteContact: function(){
-
-        },
-        changePhoto: function(){
-
-        }
+  name: 'app',
+  data () {
+    return {
+      no: 0,
+      name: '',
+      tel: '',
+      address: '',
+      result: null
     }
+  },
+  methods: {
+    fetchContacts: function () {
+      axios({
+        method: 'GET',
+        url: '/api/contacts',
+        params: {pageno: 1, pagesize: 5}
+      }).then((response) => {
+        window.console.log(response)
+        this.result = response.data
+      }).catch((ex) => {
+        window.console.log('Error : ', ex)
+      })
+    },
+    addContact: function () {
+      axios.post('/api/contacts',
+        {name: this.name, tel: this.tel, address: this.address})
+        .then((response) => {
+          window.console.log(response)
+          this.result = response.data
+          this.no = response.data.no
+        })
+        .catch((ex) => {
+          window.console.log('add Contact Error : ', ex)
+        })
+    },
+    fetchContactOne: function () {
+      axios.get('/api/contacts', {
+        params: {pageno: 1, pagesize: 5}
+      }).then((response) => {
+        window.console.log(response)
+        this.result = response.data
+      }).catch((ex) => {
+        window.console.log('fetchContactOne Error: ', ex)
+      })
+    },
+    updateContact: function () {
+      axios.put('/api/contacts/' + this.no,
+        {name: this.name, tel: this.tel, address: this.address})
+        .then((response) => {
+          window.console.log(response)
+          this.name = ''
+          this.tel = ''
+          this.address = ''
+          this.result = response.data
+        }).catch((ex) => {
+          window.console.log('updateContact Error :', ex)
+        })
+    },
+    deleteContact: function () {
+      axios.delete('/api/contacts/' + this.no)
+        .then((response) => {
+          window.console.log(response)
+          this.result = response.data
+        })
+        .catch((ex) => {
+          window.console.log('deleteContact Error : ', ex)
+        })
+    },
+    changePhoto: function () {
+      var data = new FormData()
+      var file = this.$refs.photofile.files[0]
+      data.append('photo', file)
+
+      axios.post('/api/contacts/' + this.no + '/photo', data)
+        .then((response) => {
+          this.result = response.data
+        }).catch((ex) => {
+          window.console.log('update photo failed : ', ex)
+        })
+    }
+  }
 }
 </script>
 <style>
