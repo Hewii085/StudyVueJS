@@ -11,7 +11,7 @@ export default {
     UPDATE_PHOTO: BASE_URL + "/contacts/${no}/photo",
 
     CANCEL : "cancel",
-    ADD_CONTACT_FORM : "addContactForm",
+    ADD_CONTACT : "addContact",
     ADD_SUBMIT : "addSubmit",
     UPDATE_SUBMIT : "updateSubmit",
     EDIT_CONTACT_FORM : "editContactForm",

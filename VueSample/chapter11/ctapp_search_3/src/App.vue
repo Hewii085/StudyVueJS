@@ -24,8 +24,24 @@ export default {
     }
   },
   mounted :function(){
-    
+    fetchContacts();
+  },
+  methods : {
+    fetchContacts : function() {
+      this.$axios.get(CONSTANT.FETCH,{
+        params:{
+          pageno: this.contactlist.pageno,
+          pagesize: this.contactlist.pagesize
+        }
+      }).then((response)=>{
+        this.contactlist = response.data;
+      }).catch((ex)=>{
+        window.console.log("fetchContacts Error : ", ex);
+      })
+    }
+
   }
+ 
 }
 </script>
 

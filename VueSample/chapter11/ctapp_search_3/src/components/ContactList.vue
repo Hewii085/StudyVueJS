@@ -1,10 +1,11 @@
 <template>
     <div>
         <p class="addnew">
-            <button>새로운 연락처 추가하기</button>
+            <button class="btn btn-primary" @click="addContact()">
+                새로운 연락처 추가하기</button>
         </p>
-        <div>
-            <table>
+        <div id="example">
+            <table id="list" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>이름</th><th>전화번호</th><th>주소</th>
@@ -12,14 +13,36 @@
                     </tr>
                 </thead>
                 <tbody id="contacts">
+                    <tr v-for="contact in contactlist.contacts" :key="contact.no">
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.tel}}</td>
+                        <td>{{contact.address}}</td>
+                        <td><img class="thumbnail" :src="contact.photo" 
+                                 @click="editPhoto(contact.no)" /></td>
+                        <td>
+                            <button class="btn btn-primary" 
+                                    @click="editContact(contact.no)">편집</button>
+                            <button class="btn btn-primary" 
+                                    @click="deleteContact(contact.no)">삭제</button>
+                    </tr>
                 </tbody>
             </table>
         </div>
+            <paginate ref="pagebuttons"
+                      :page-count="totalpage"
+                      :page-range ="7"
+                      :margin-pages="3"
+                      :click-handler="pageChanged"
+                      :prev-text="'이전'"
+                      :next-text="'다음'"
+                      :container-class="'pagination'"
+                      :page-class="'page-item'">
     </div>
 </template>
 
 <script>
 import Paginate from 'vuejs-paginate';
+import CONSTANT from '../Constant'
 
 export default {
     name: 'contactList',
@@ -34,6 +57,12 @@ export default {
         ['contactlist.pageno'] : function() {
             this.$refs.pagebuttons.selected = this.contactlist.pageno - 1;
         }
+    },
+    mutation :{
+        [CONSTANT.ADD_CONTACT] : (state, payload) =>{
+
+        }
+
     }
 }
 </script>
