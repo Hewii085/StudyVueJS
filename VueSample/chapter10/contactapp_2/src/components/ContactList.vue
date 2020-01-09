@@ -1,4 +1,3 @@
-  
 <template>
     <div>
     <p class="addnew">
@@ -79,8 +78,7 @@ export default {
         editPhoto : function(no) {
             eventBus.$emit("editPhoto", no);
         }
-    }
-}
+    } }
 </script>
 
 <style scoped>

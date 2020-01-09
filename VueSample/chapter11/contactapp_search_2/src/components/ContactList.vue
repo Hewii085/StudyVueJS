@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody id="contacts" >
-            <tr v-for="contact in contacts">
+            <tr v-for="contact in contacts" :key="contact.no">
                 <td>{{contact.no}}</td>
                 <td>{{contact.name}}</td>
                 <td>{{contact.tel}}</td>
@@ -26,6 +26,7 @@
     </div>
 </template>
 <script type="text/javascript">
+
 export default {
     name : "contact-list",
     computed : {

@@ -1,5 +1,5 @@
 {
-  "name": "contactapp_search_2",
+  "name": "ctapp_search_3",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,7 @@
     "axios": "^0.19.1",
     "core-js": "^3.4.4",
     "es6-promise": "^4.2.8",
-    "loadash": "^1.0.0",
-    "loadsh": "^0.0.4",
+    "paginate": "^0.2.0",
     "vue": "^2.6.10",
     "vuex": "^3.1.2"
   },

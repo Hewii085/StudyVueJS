@@ -12,7 +12,9 @@
     </div>
     </div>
 </template>
+
 <script type="text/javascript">
+
 import Constant from '../Constant';
 import { mapState } from 'vuex';
 export default {
