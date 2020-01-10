@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
-
+import state from "./state";
+import actions from './actions';
+import mutations from './mutation';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    state:{
-
-    },
-    mutations:{
-
-    }
+    state,
+    actions,
+    mutations
 })
+
+export default store;

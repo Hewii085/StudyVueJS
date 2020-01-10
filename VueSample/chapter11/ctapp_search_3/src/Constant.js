@@ -12,12 +12,17 @@ export default {
 
     CANCEL : "cancel",
     ADD_CONTACT : "addContact",
+    ADD_CONTACT_FORM : "addContactForm",
     ADD_SUBMIT : "addSubmit",
     UPDATE_SUBMIT : "updateSubmit",
     EDIT_CONTACT_FORM : "editContactForm",
     DELETE_CONTACT : "deleteContact",
     EDIT_PHOTO : "editPhoto",
     UPDATE_PHOTO_COMMAND : "updatePhoto",
-    PAGE_CHANGED : "pageChanged"
+    PAGE_CHANGED : "pageChanged",
+    TOTAL_PAGE : "totalpage",
+
+    FETCH_CONTACTS : "fetchContacts",
+    CANCEL_FORM : "cancelForm"
 
 }

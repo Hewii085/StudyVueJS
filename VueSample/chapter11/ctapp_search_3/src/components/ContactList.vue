@@ -4,6 +4,7 @@
             <button class="btn btn-primary" @click="addContact()">
                 새로운 연락처 추가하기</button>
         </p>
+
         <div id="example">
             <table id="list" class="table table-striped table-bordered table-hover">
                 <thead>
@@ -17,54 +18,58 @@
                         <td>{{contact.name}}</td>
                         <td>{{contact.tel}}</td>
                         <td>{{contact.address}}</td>
-                        <td><img class="thumbnail" :src="contact.photo" 
-                                 @click="editPhoto(contact.no)" /></td>
-                        <td>
-                            <button class="btn btn-primary" 
-                                    @click="editContact(contact.no)">편집</button>
-                            <button class="btn btn-primary" 
-                                    @click="deleteContact(contact.no)">삭제</button>
+                        <td><img class="thumbnail" :src="contact.photo"/></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-            <paginate ref="pagebuttons"
-                      :page-count="totalpage"
-                      :page-range ="7"
-                      :margin-pages="3"
-                      :click-handler="pageChanged"
-                      :prev-text="'이전'"
-                      :next-text="'다음'"
-                      :container-class="'pagination'"
-                      :page-class="'page-item'">
+
+        <paginate ref="pagebuttons"
+                  :page-count="totalpage"
+                  :page-range ="7"
+                  :margin-pages="3"
+                  :click-handler="pageChanged"
+                  :prev-text="'이전'"
+                  :next-text="'다음'"
+                  :container-class="'pagination'"
+                  :page-class="'page-item'"/>
     </div>
 </template>
 
 <script>
 import Paginate from 'vuejs-paginate';
-import CONSTANT from '../Constant'
+import Constant from '../Constant'
+import {mapState} from 'vuex';
 
 export default {
     name: 'contactList',
     components : {Paginate},
-    props : ['contactlist'],
-    computed :{
-        totalpage : function() {
-            return Math.Floor((this.contactlist.totalcount - 1) / this.contactlist.pagesize) + 1;
-        }
+    computed :
+    {
+         totalpage : function(){
+             return Math.floor((this.contactlist.totalcount - 1) / this.contactlist.pagesize)+1;
+         },
+         ...mapState(['contactlist'])
     },
     watch : {
-        ['contactlist.pageno'] : function() {
+        ['contactlist.pageno'] : function(){
             this.$refs.pagebuttons.selected = this.contactlist.pageno - 1;
         }
     },
-    mutation :{
-        [CONSTANT.ADD_CONTACT] : (state, payload) =>{
-
+    mounted : function() {
+        this.$store.dispatch(Constant.FETCH_CONTACTS, {pageno:1});
+    },
+    methods :{
+        pageChanged : function(page){
+            this.$store.dispatch(Constant.FETCH_CONTACTS, {pageno:page});
+        },
+        addContact : function(){
+            this.$store.dispatch(Constant.ADD_CONTACT_FORM);
         }
-
     }
+    
 }
+
 </script>
 
 <style scoped>

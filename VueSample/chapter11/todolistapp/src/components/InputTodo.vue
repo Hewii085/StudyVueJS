@@ -25,7 +25,7 @@ import Constant from '../Constant'
 export default {
     name: 'input-todo',
     data: function(){
-        return { todo:"" }
+        return { todo: "" }
     },
     methods:{
         addTodo: function(){
