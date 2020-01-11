@@ -74,8 +74,6 @@ export default {
             this.$store.dispatch(Constant.CANCEL_FORM);
         }
     }
-
-    
 }
 </script>
 

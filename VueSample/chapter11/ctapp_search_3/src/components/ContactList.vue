@@ -65,7 +65,19 @@ export default {
         },
         addContact : function(){
             this.$store.dispatch(Constant.ADD_CONTACT_FORM);
+        },
+        editContact : function(no){
+            this.$store.dispatch(Constant.EDIT_CONTACT_FORM,{no:no});
+        },
+        deleteContact: function(no){
+            if(confirm("정말로 삭제하시겠습니까?") == true){
+                this.$store.dispatch(Constant.DELETE_CONTACT, {no:no});
+            }
+        },
+        editPhoto : function(no){
+            this.$store.dispatch(Constant.EDIT_PHOTO,{no:no});
         }
+
     }
     
 }
