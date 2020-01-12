@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.1",
-    "bootstrap": "3.3.x",
+    "bootstrap": "3.4.x",
     "core-js": "^3.4.4",
     "es6-promise": "^4.2.8",
     "paginate": "^0.2.0",
