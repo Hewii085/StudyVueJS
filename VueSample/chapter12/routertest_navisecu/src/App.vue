@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="header">
@@ -32,14 +31,15 @@ const router = new VueRouter({
     { path:'/about',name:'about', component: About },
     { path:'/contacts',name:'contacts', component: Contacts, 
       children : [
-        { path : ':no',name :'contactbyno', component : ContactByNo,
+        { 
+          path : ':no',name :'contactbyno', component : ContactByNo,
           beforeEnter : (to,from,next)=>{
             window.console.log("@@ beforeEnter! : " + from.path + "-->" + to.path)
             if(from.path.startsWith("/contacts"))
               next();
             else
               next("/home");
-          }
+        }
         },
       ] 
     }
@@ -54,6 +54,7 @@ router.beforeEach((to,from,next)=>{
 router.afterEach((to,from)=>{
   window.console.log("** afterEach!! :",to,from)
 })
+
 export default {
   name : 'app',
   router
