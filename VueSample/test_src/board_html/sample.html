@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <table>
+                <thead>
+                    <tr>
+                        <th>index</th><th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="contact in contacts">
+                        <td>{{contact.id}}</td>
+                        <td>{{contact.title}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <span v-for="contact in contacts"><!--안에 있는 html tag를 반복-->
+                    <button>{{contact.id}}</button>
+                </ul>
+            </p>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#app',
+            data :{
+                "contacts" : [
+                { id : 1, title : "one"},
+                { id : 2, title : "two"},
+                { id : 3, title : "three"},
+                { id : 4, title : "four"},
+                { id : 5, title : "five"},
+                { id : 6, title : "six"},
+                { id : 7, title : "seven"},
+                { id : 8, title : "eight"},
+                { id : 9, title : "nine"},
+                { id : 10, title : "ten"}
+                ]
+            }
+        })
+    </script>
+</html>
