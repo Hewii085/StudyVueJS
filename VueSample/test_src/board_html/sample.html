@@ -6,27 +6,33 @@
     </head>
     <body>
         <div id="app">
-            <table>
-                <thead>
-                    <tr>
-                        <th>index</th><th>Title</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="contact in contacts">
-                        <td>{{contact.id}}</td>
-                        <td>{{contact.title}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>
-                <span v-for="contact in contacts"><!--안에 있는 html tag를 반복-->
-                    <button>{{contact.id}}</button>
-                </ul>
-            </p>
+            <form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>index</th><th>Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="contact in contacts">
+                            <td>{{contact.id}}</td>
+                            <td><a v-bind:href="/board/+'contact.id'">{{contact.title}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <span v-for="contact in contacts">
+                        <button>{{contact.id}}</button>
+                    </ul>
+                </p>
+            </form>
         </div>
     </body>
     <script type="text/javascript">
+        function clicklink(){
+            console.log("out method");
+        }
+
         var vm = new Vue({
             el : '#app',
             data :{
@@ -40,9 +46,18 @@
                 { id : 7, title : "seven"},
                 { id : 8, title : "eight"},
                 { id : 9, title : "nine"},
-                { id : 10, title : "ten"}
+                { id : 10, title : "ten"},
+                { id : 11, title : "eleven"},
+                { id : 12, title : "twelve"},
+                { id : 13, title : "thirteen"}
                 ]
+            },
+            methods:{
+                clicklink : function(){
+                    console.log("clicked Link");
+                }
             }
+
         })
     </script>
 </html>
